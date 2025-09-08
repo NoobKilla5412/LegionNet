@@ -24,6 +24,7 @@
     "workbox-webpack-plugin": "7.1.0"
   },
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "http-server": "^14.1.1"
   }
 }
