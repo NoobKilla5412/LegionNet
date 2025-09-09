@@ -24,18 +24,18 @@ let currentPage = window.location.hash;
   const navbar = await (await fetch("/navbar.html")).text();
   document.body.prepend(parser.parseFromString(navbar, "text/html").body.firstElementChild!);
 
-  const navigationInterval = async () => {
-    let lastPage = currentPage;
-    currentPage = window.location.hash;
+  // const navigationInterval = async () => {
+  //   let lastPage = currentPage;
+  //   currentPage = window.location.hash;
 
-    if (currentPage != "") currentPage = currentPage.substring(1);
-    else currentPage = "index";
-    if (lastPage != currentPage) await navigateTo(currentPage);
-  };
+  //   if (currentPage != "") currentPage = currentPage.substring(1);
+  //   else currentPage = "index";
+  //   if (lastPage != currentPage) await navigateTo(currentPage);
+  // };
 
-  await navigationInterval();
+  // await navigationInterval();
 
-  setInterval(navigationInterval, 100);
+  // setInterval(navigationInterval, 100);
 
   // Add favicon to all pages
   document.head.appendChild(
