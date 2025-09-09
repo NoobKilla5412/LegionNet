@@ -1,35 +1,8 @@
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createDarkHeartButton } from "./DarkHeart";
-import { createElement, password } from "./utils";
-
-const parser = new DOMParser();
+import { createElement, createObfuscatedWindow, navigateTo, parser, password } from "./utils";
 
 let currentPage = window.location.hash;
-
-export function createObfuscatedWindow(url: string) {
-  let win = window.open();
-  if (!win) return;
-  win.document.body.style.margin = "0";
-  win.document.body.style.height = "100vh";
-  let iframe = win.document.createElement("iframe");
-  iframe.style.border = "none";
-  iframe.style.width = "100%";
-  iframe.style.height = "100%";
-  iframe.style.margin = "0";
-  iframe.src = url;
-
-  win.document.body.appendChild(iframe);
-}
-
-async function navigateTo(page: string) {
-  let elements = document.body.getElementsByClassName("container-fluid");
-  elements[elements.length - 1].remove();
-  document.body.appendChild(parser.parseFromString(await (await fetch(`/${page}.html`)).text(), "text/html").body.firstElementChild!);
-  if (location.hash == "#DarkHeart") {
-    createDarkHeartButton();
-  }
-}
 
 (async () => {
   if (location.pathname == "/launch") {
@@ -80,6 +53,7 @@ async function navigateTo(page: string) {
     })
   );
 
+  // Set active page in navbar
   let file = window.location.pathname;
   if (file != "/") file = file.substring(1);
 
