@@ -1,8 +1,8 @@
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createElement, createObfuscatedWindow, navigateTo, parser, password } from "./utils";
+import { createElement, createObfuscatedWindow, onLoad, parser, password } from "./utils";
 
-let currentPage = window.location.hash;
+let currentPage = window.location.pathname;
 
 (async () => {
   if (location.pathname == "/launch") {
@@ -24,18 +24,18 @@ let currentPage = window.location.hash;
   const navbar = await (await fetch("/navbar.html")).text();
   document.body.prepend(parser.parseFromString(navbar, "text/html").body.firstElementChild!);
 
-  const navigationInterval = async () => {
-    let lastPage = currentPage;
-    currentPage = window.location.hash;
+  // const navigationInterval = async () => {
+  //   let lastPage = currentPage;
+  //   currentPage = window.location.hash;
 
-    if (currentPage != "") currentPage = currentPage.substring(1);
-    else currentPage = "index";
-    if (lastPage != currentPage) await navigateTo(currentPage);
-  };
+  //   if (currentPage != "") currentPage = currentPage.substring(1);
+  //   else currentPage = "index";
+  //   if (lastPage != currentPage) await navigateTo(currentPage);
+  // };
 
-  await navigationInterval();
+  // await navigationInterval();
 
-  setInterval(navigationInterval, 100);
+  // setInterval(navigationInterval, 100);
 
   // Add favicon to all pages
   document.head.appendChild(
@@ -58,4 +58,6 @@ let currentPage = window.location.hash;
   if (file != "/") file = file.substring(1);
 
   document.getElementById(file)?.classList.add("active");
+
+  onLoad(currentPage);
 })();

