@@ -1,6 +1,8 @@
-import { createElement } from "./utils";
+import { createElement, password } from "./utils";
 
 export function createDarkHeartButton() {
+  if (sessionStorage.getItem("pwd") != password) return;
+
   let elements = document.body.getElementsByClassName("container-fluid");
 
   let button = createElement("button", {

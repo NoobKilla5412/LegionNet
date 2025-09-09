@@ -1,7 +1,7 @@
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createDarkHeartButton } from "./DarkHeart";
-import { createElement } from "./utils";
+import { createElement, password } from "./utils";
 
 const parser = new DOMParser();
 
@@ -38,9 +38,11 @@ async function navigateTo(page: string) {
     document.body
       .appendChild(createElement("button", { type: "button", className: "btn btn-primary", innerText: "Open in new window" }))
       .addEventListener("click", () => {
-        let pwd = prompt("Enter the password");
-        if (pwd == "SDIYBT") createObfuscatedWindow(url.href);
-        else if (pwd) open("/tabBomb");
+        let pwd = sessionStorage.getItem("pwd") || prompt("Enter the password");
+        if (pwd == password) {
+          sessionStorage.setItem("pwd", password);
+          createObfuscatedWindow(url.href);
+        } else if (pwd) open("/tabBomb");
       });
     return;
   }

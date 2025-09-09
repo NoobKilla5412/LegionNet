@@ -12,3 +12,5 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(tag: K, pro
   }
   return element;
 }
+
+export const password = "SDIYBT";
