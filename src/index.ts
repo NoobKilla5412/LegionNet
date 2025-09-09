@@ -1,8 +1,8 @@
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createElement, createObfuscatedWindow, navigateTo, parser, password } from "./utils";
+import { createElement, createObfuscatedWindow, onLoad, parser, password } from "./utils";
 
-let currentPage = window.location.hash;
+let currentPage = window.location.pathname;
 
 (async () => {
   if (location.pathname == "/launch") {
@@ -58,4 +58,6 @@ let currentPage = window.location.hash;
   if (file != "/") file = file.substring(1);
 
   document.getElementById(file)?.classList.add("active");
+
+  onLoad(currentPage);
 })();
