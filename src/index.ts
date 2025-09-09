@@ -20,9 +20,9 @@ let currentPage = window.location.hash;
     return;
   }
 
-  // fetch and add header
-  const header = await (await fetch("/header.html")).text();
-  document.body.prepend(parser.parseFromString(header, "text/html").body.firstElementChild!);
+  // fetch and add navbar
+  const navbar = await (await fetch("/navbar.html")).text();
+  document.body.prepend(parser.parseFromString(navbar, "text/html").body.firstElementChild!);
 
   const navigationInterval = async () => {
     let lastPage = currentPage;
