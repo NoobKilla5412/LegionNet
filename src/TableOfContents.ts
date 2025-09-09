@@ -28,6 +28,7 @@ export function createTableOfContents<K extends keyof HTMLElementTagNameMap>(tag
   tableContainer.appendChild(expandButton);
 
   let headers = Array.from(document.body.getElementsByTagName(tag));
+  headers.sort((a, b) => (a.innerText < b.innerText ? -1 : 1));
   headers.forEach((element) => {
     table.appendChild(createElement("a", { href: `#${createIDFromText(element.innerText)}`, innerText: `${element.innerText}` }));
     table.appendChild(createElement("br"));
