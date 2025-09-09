@@ -1,4 +1,5 @@
 import { createDarkHeartButton } from "./DarkHeart";
+import { createTableOfContents } from "./TableOfContents";
 import { RecursivePartial } from "./types";
 
 export function createElement<K extends keyof HTMLElementTagNameMap>(tag: K, properties?: RecursivePartial<HTMLElementTagNameMap[K]>) {
@@ -7,7 +8,15 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(tag: K, pro
     for (const key in properties) {
       if (Object.prototype.hasOwnProperty.call(properties, key)) {
         const property = properties[key];
-        element[key] = property as any;
+        if (typeof property == "object" && property) {
+          for (const key1 in property) {
+            if (Object.prototype.hasOwnProperty.call(property, key1)) {
+              const element1 = property[key1];
+              //@ts-ignore
+              element[key][key1] = element1 as any;
+            }
+          }
+        } else element[key] = property as any;
       }
     }
   }
@@ -25,6 +34,8 @@ function onLoad(page: string) {
   switch (page) {
     case "DarkHeart":
       createDarkHeartButton();
+    case "ProxyCompanyListings":
+      createTableOfContents("h3");
   }
 }
 
