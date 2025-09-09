@@ -18,8 +18,13 @@ export async function navigateTo(page: string) {
   let elements = document.body.getElementsByClassName("container-fluid");
   elements[elements.length - 1].remove();
   document.body.appendChild(parser.parseFromString(await (await fetch(`/${page}.html`)).text(), "text/html").body.firstElementChild!);
-  if (location.hash == "#DarkHeart") {
-    createDarkHeartButton();
+  onLoad(page);
+}
+
+function onLoad(page: string) {
+  switch (page) {
+    case "DarkHeart":
+      createDarkHeartButton();
   }
 }
 
