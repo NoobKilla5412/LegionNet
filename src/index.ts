@@ -1,12 +1,13 @@
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { createDarkHeartButton } from "./DarkHeart";
 import { createElement } from "./utils";
 
 const parser = new DOMParser();
 
 let currentPage = window.location.hash;
 
-function create(url: string) {
+export function createObfuscatedWindow(url: string) {
   let win = window.open();
   if (!win) return;
   win.document.body.style.margin = "0";
@@ -25,6 +26,9 @@ async function navigateTo(page: string) {
   let elements = document.body.getElementsByClassName("container-fluid");
   elements[elements.length - 1].remove();
   document.body.appendChild(parser.parseFromString(await (await fetch(`/${page}.html`)).text(), "text/html").body.firstElementChild!);
+  if (location.hash == "#DarkHeart") {
+    createDarkHeartButton();
+  }
 }
 
 (async () => {
@@ -35,23 +39,28 @@ async function navigateTo(page: string) {
       .appendChild(createElement("button", { type: "button", className: "btn btn-primary", innerText: "Open in new window" }))
       .addEventListener("click", () => {
         let pwd = prompt("Enter the password");
-        if (pwd == "SDIYBT") create(url.href);
+        if (pwd == "SDIYBT") createObfuscatedWindow(url.href);
         else if (pwd) open("/tabBomb");
       });
     return;
   }
 
+  // fetch and add header
   const header = await (await fetch("/header.html")).text();
   document.body.prepend(parser.parseFromString(header, "text/html").body.firstElementChild!);
 
-  setInterval(() => {
+  const navigationInterval = async () => {
     let lastPage = currentPage;
     currentPage = window.location.hash;
 
     if (currentPage != "") currentPage = currentPage.substring(1);
     else currentPage = "index";
-    if (lastPage != currentPage) navigateTo(currentPage);
-  }, 100);
+    if (lastPage != currentPage) await navigateTo(currentPage);
+  };
+
+  await navigationInterval();
+
+  setInterval(navigationInterval, 100);
 
   // Add favicon to all pages
   document.head.appendChild(

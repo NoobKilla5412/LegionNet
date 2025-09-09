@@ -1,1 +1,2 @@
-export declare function createElement<K extends keyof HTMLElementTagNameMap>(tag: K, properties?: Partial<HTMLElementTagNameMap[K]>): HTMLElementTagNameMap[K];
+import { RecursivePartial } from "./types";
+export declare function createElement<K extends keyof HTMLElementTagNameMap>(tag: K, properties?: RecursivePartial<HTMLElementTagNameMap[K]>): HTMLElementTagNameMap[K];
