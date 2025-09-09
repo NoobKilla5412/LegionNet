@@ -706,7 +706,17 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.esm.js\");\n__webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ \"./node_modules/bootstrap/dist/css/bootstrap.min.css\");\nconst parser = new DOMParser();\n(async () => {\n    const header = await (await fetch(\"/header.html\")).text();\n    document.body.append(parser.parseFromString(header, \"text/html\").body.firstElementChild);\n    let file = window.location.pathname;\n    if (file != \"/\")\n        file = file.substring(1);\n    console.log(file);\n    console.log(document.getElementById(file));\n    document.getElementById(file)?.classList.add(\"active\");\n})();\n\n\n//# sourceURL=webpack://template/./src/index.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.esm.js\");\n__webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ \"./node_modules/bootstrap/dist/css/bootstrap.min.css\");\nconst utils_1 = __webpack_require__(/*! ./utils */ \"./src/utils.ts\");\nconst parser = new DOMParser();\n(async () => {\n    const header = await (await fetch(\"/header.html\")).text();\n    document.body.prepend(parser.parseFromString(header, \"text/html\").body.firstElementChild);\n    document.head.appendChild((0, utils_1.createElement)(\"link\", {\n        rel: \"icon\",\n        href: \"favicon.ico\",\n        type: \"image/x-icon\"\n    }));\n    document.head.appendChild((0, utils_1.createElement)(\"link\", {\n        rel: \"shortcut icon\",\n        href: \"favicon.png\",\n        type: \"image/png\"\n    }));\n    let file = window.location.pathname;\n    if (file != \"/\")\n        file = file.substring(1);\n    document.getElementById(file)?.classList.add(\"active\");\n})();\n\n\n//# sourceURL=webpack://template/./src/index.ts?");
+
+/***/ }),
+
+/***/ "./src/utils.ts":
+/*!**********************!*\
+  !*** ./src/utils.ts ***!
+  \**********************/
+/***/ ((__unused_webpack_module, exports) => {
+
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.createElement = void 0;\nfunction createElement(tag, properties) {\n    const element = document.createElement(tag);\n    if (properties) {\n        for (const key in properties) {\n            if (Object.prototype.hasOwnProperty.call(properties, key)) {\n                const property = properties[key];\n                element[key] = property;\n            }\n        }\n    }\n    return element;\n}\nexports.createElement = createElement;\n\n\n//# sourceURL=webpack://template/./src/utils.ts?");
 
 /***/ }),
 
