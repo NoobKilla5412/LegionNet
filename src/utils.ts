@@ -50,8 +50,13 @@ export function onLoad(page: string) {
   switch (page) {
     case "DarkHeart":
       createDarkHeartButton();
+      break;
     case "ProxyCompanyListings":
       createTableOfContents("h3");
+      break;
+    case "GamesAndProxies":
+      createTableOfContents("h3");
+      break;
   }
 }
 
