@@ -7,7 +7,7 @@
     "compile": "webpack --config webpack.config.js",
     "serve": "http-server public -p 80"
   },
-  "author": "Noob Killa Studios",
+  "author": "Sigmalicious Studios",
   "license": "ISC",
   "devDependencies": {
     "@webpack-cli/generators": "^3.0.7",
