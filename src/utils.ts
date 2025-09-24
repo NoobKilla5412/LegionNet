@@ -77,4 +77,4 @@ export function createObfuscatedWindow(url: string) {
 
 export const parser = new DOMParser();
 
-export const password = "SDIYBT";
+export const password = "67mustardmangolabubu";
