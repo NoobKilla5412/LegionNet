@@ -15,6 +15,7 @@ export function createDarkHeartButton() {
       let frame = createElement("iframe", {
         src: (() => {
           let url = new URL(window.location.href);
+          url.pathname = "";
           url.port = "8081";
           return url.href;
         })()
