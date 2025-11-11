@@ -1,0 +1,45 @@
+<div style="display: flex; justify-content: center">
+  <div
+    style="
+      position: sticky !important;
+      top: 0 !important;
+      background-color: #ffffffaf !important;
+      width: fit-content !important;
+      z-index: 10000 !important;
+      padding: 1px 10px !important;
+      height: 25px !important;
+    "
+  >
+    <form action="/" style="padding: 0; width: 100%" id="enter-url">
+      <label for="url">
+        Enter a URL or search
+        <input type="text" id="user" hidden />
+        <input
+          type="text"
+          id="url"
+          name="url"
+          style="width: fit-content; display: inline"
+          value="$value"
+        />
+      </label>
+      <!-- <button type="submit" style="display: inline-block">Go</button> -->
+    </form>
+    <form id="script">
+      <label for="js">
+        Enter JS
+        <input type="text" id="js" />
+      </label>
+    </form>
+    <button id="sign-in">Sign in</button>
+    <script>
+      const script = document.getElementById("script");
+      const text = document.getElementById("js");
+      script.addEventListener("submit", (e) => {
+        e.preventDefault();
+        eval(text.value);
+        text.value = "";
+      });
+    </script>
+    <script src="bin/index.js"></script>
+  </div>
+</div>
