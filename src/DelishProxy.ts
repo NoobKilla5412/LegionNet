@@ -6,14 +6,18 @@ export function createDarkHeartButton() {
   let elements = document.body.getElementsByClassName("container-fluid");
 
   let button = createElement("button", {
-    innerText: "Open DarkHeart Proxy",
+    innerText: "Open DelishProxy",
     className: "btn btn-primary",
     onclick: () => {
       document.body.innerHTML = "";
       document.body.style.margin = "0";
       document.body.style.height = "100vh";
       let frame = createElement("iframe", {
-        src: location.hostname
+        src: (() => {
+          let url = new URL(window.location.href);
+          url.port = "8081";
+          return url.href;
+        })()
       });
       frame.style.border = "none";
       frame.style.width = "100%";

@@ -1,4 +1,4 @@
-import { createDarkHeartButton } from "./DarkHeart";
+import { createDarkHeartButton as createDelishProxyButton } from "./DelishProxy";
 import { createTableOfContents } from "./TableOfContents";
 import { RecursivePartial } from "./types";
 
@@ -48,8 +48,8 @@ export function onLoad(page: string) {
   if (page.startsWith("/")) page = page.substring(1);
 
   switch (page) {
-    case "DarkHeart":
-      createDarkHeartButton();
+    case "DelishProxy":
+      createDelishProxyButton();
       break;
     case "ProxyCompanyListings":
       createTableOfContents("h3");
